@@ -8,15 +8,15 @@ using namespace std;
 TwentyQuestionsTree::TwentyQuestionsTree(FILE *fp)
 {
   char *p,*l,*r;
-  char buff[250];
+  char buff[1250];
 
  
 
-  while((fgets(buff,250,fp)!=NULL))
+  while((fgets(buff,1250,fp)!=NULL))
     {  
        if(root==NULL)
 	 {
-	   if(fgets(buff,250,fp)!=NULL){
+	   if(fgets(buff,1250,fp)!=NULL){
 	     p=strtok(buff,",\n");
 	     root = new BinaryNode(p);
 	     l=strtok(NULL,",\n");
