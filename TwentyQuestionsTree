@@ -9,6 +9,8 @@ TwentyQuestionsTree::TwentyQuestionsTree(FILE *fp)
 {
   char *p,*l,*r;
   char buff[500];
+  while((fgets(buff,500,fp)!=NULL))
+  {
   if(root==NULL)
 	 {
 	   if(fgets(buff,500,fp)!=NULL){
@@ -19,12 +21,6 @@ TwentyQuestionsTree::TwentyQuestionsTree(FILE *fp)
 	     r=strtok(NULL,"\n");
 	     root->right=new BinaryNode(r);}
 	 }
-   
-  while((fgets(buff,500,fp)!=NULL))
-    {  
-        p = strtok(buff,",\n");  
-        l = strtok(NULL,",\n");
-	r = strtok(NULL, "\n");
 	insert(root,p,l,r);
       }
 }
