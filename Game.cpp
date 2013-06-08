@@ -1,4 +1,3 @@
-
 using namespace std;
 #include <cstdio>
 #include <cstdlib>
@@ -87,14 +86,17 @@ int main(int argc, char *argv[])
 		play = atoi(buf);
 	} while(play == 1);
 	
-	fclose(fp);
+	
 	// if a filename was given, reopen the file for writing and
 	// write out the current state of the tree
 	if(argc==2)
 	  {
-	    fp = fopen(argv[1],"r");
-	    tree->storeTree(fp);
-	    fclose(fp);
+	    if(fp != NULL)
+	    {
+	    	fclose(fp);
+	    	fp = fopen(argv[1],"w");
+	    	tree->storeTree(fp);
+	    	fclose(fp);
 	  }
 }
 
