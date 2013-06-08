@@ -8,23 +8,23 @@ using namespace std;
 TwentyQuestionsTree::TwentyQuestionsTree(FILE *fp)
 {
   char *p,*l,*r;
-  char buf[250];
+  char buff[250];
 
  
 
-  while((fgets(buf,250,fp)!=NULL))
+  while((fgets(buff,250,fp)!=NULL))
     {  
        if(root==NULL)
-   {
-	   if(fgets(buf,250,fp)!=NULL){
-	     p=strtok(buf,",\n");
+	 {
+	   if(fgets(buff,250,fp)!=NULL){
+	     p=strtok(buff,",\n");
 	     root = new BinaryNode(p);
 	     l=strtok(NULL,",\n");
 	     root->left=new BinaryNode(l);
 	     r=strtok(NULL,"\n");
 	     root->right=new BinaryNode(r);}
 	 }
-        p = strtok(buf,",\n");
+        p = strtok(buff,",\n");
         l = strtok(NULL,",\n");
 	r = strtok(NULL, "\n");
 	insert(root,p,l,r);
@@ -70,14 +70,31 @@ bool TwentyQuestionsTree::insert(BinaryNode *r,char *parent, char *left, char *r
  */
 bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left, char *right)
 {
-  if(strcmp(n->question,left)==0 || strcmp(n->question,right)==0)
-    {
-      delete n->question;
-      char* new=new char[strlen(parent)-1];
-      strcpy(new,parent);
-      n->left=new BinaryNode(left);
-      n->right=new BinaryNode(right);
-      return true;
+  if(n->left==NULL && n->right==NULL)
+    { 
+      if(strcmp(n->question,left)==0)
+	{
+	  char* mod =new char[strlen(n->question)+1];
+	  strcpy(mod,n->question);
+	  delete n->question;
+	  n->question=new char[strlen(parent)+1];
+	  n->left=new BinaryNode(mod);
+	  n->right=new BinaryNode(right);
+	  delete mod;
+	  return true;
+	}
+      else if(strcmp(n->question,right)==0)
+	{
+	  char* mod =new char[strlen(n->question)+1];
+	  strcpy(mod,n->question);
+	  delete n->question;
+	  n->question=new char[strlen(parent)+1];
+	  n->left=new BinaryNode(left);
+	  n->right=new BinaryNode(mod);
+	  delete mod;
+	  return true;
+	}
+      
     }
   else
     {
