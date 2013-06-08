@@ -66,7 +66,7 @@ bool TwentyQuestionsTree::insert(BinaryNode *r,char *parent, char *left, char *r
  */
 bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left, char *right)
 {
-  if(n->left==NULL || n->right==NULL)
+  if(n->left==NULL && n->right==NULL)
     { 
       if(strcmp(n->question,left)==0)
 	{
