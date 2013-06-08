@@ -105,14 +105,9 @@ bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left
     }
   else
     {
-      if(n->left!=NULL){
-	if(modifyAndInsert(n->left,parent,left,right))
-	  return true;}
-      else  if(n->right!=NULL)
-	{if(modifyAndInsert(n->right,parent,left,right))
-	    return true;}
-      else
-	return false;
+      modifyAndInsert(n->left,parent,left,right);
+      modifyAndInsert(n->right,parent,left,right);
+      return false;
     }
 }
 
