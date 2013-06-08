@@ -1,0 +1,98 @@
+OLD MODIFY AND INSERT
+if(n->left==NULL && n->right==NULL)
+    { 
+      if(strcmp(n->question,left)==0)
+    {
+      char* mod =new char[strlen(n->question)+1];
+      strcpy(mod,n->question);
+
+      delete n->question;
+
+      n->question=new char[strlen(parent)+1];
+      n->left=new BinaryNode(mod);
+      n->right=new BinaryNode(right);
+
+      delete mod;
+      return true;
+    }
+      else if(strcmp(n->question,right)==0)
+    {
+      char* mod =new char[strlen(n->question)+1];
+      strcpy(mod,n->question);
+      delete n->question;
+
+      n->question=new char[strlen(parent)+1];
+      n->left=new BinaryNode(left);
+      n->right=new BinaryNode(mod);
+
+      delete mod;
+      return true;
+    }
+      
+    }
+    
+     else
+    {
+      if(n->left!=NULL){
+    if(modifyAndInsert(n->left,parent,left,right))
+      return true;}
+      else  if(n->right!=NULL)
+    {if(modifyAndInsert(n->right,parent,left,right))
+        return true;}
+      else
+    return false;
+    }
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+CURRENT ONE
+bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left, char *right)
+{
+  if(n->left==NULL || n->right==NULL)
+    { 
+      if(strcmp(n->question,left)==0)
+  {
+	  char* mod =new char[strlen(n->question)+1];
+	  strcpy(mod,n->question);
+
+	  delete n->question;
+	  n->question=new char[strlen(parent)+1];
+	  strcpy(n->question,parent);
+
+	  n->left=new BinaryNode(mod);
+	  n->right=new BinaryNode(right);
+
+	  return true;
+	}
+      else if(strcmp(n->question,right)==0)
+	{
+	  char* mod =new char[strlen(n->question)+1];
+	  strcpy(mod,n->question);
+
+	  delete n->question;
+	  n->question=new char[strlen(parent)+1];
+	  strcpy(n->question,parent);
+
+
+	  n->left=new BinaryNode(left);
+	  n->right=new BinaryNode(mod);
+
+	  return true;
+	}
+      
+    }
+  else
+    {
+      modifyAndInsert(n->left,parent,left,right);
+      modifyAndInsert(n->right,parent,left,right);
+      return false;
+    }
+}
