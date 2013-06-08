@@ -70,7 +70,7 @@ bool TwentyQuestionsTree::insert(BinaryNode *r,char *parent, char *left, char *r
  */
 bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left, char *right)
 {
-  if(n->left==NULL && n->right==NULL)
+  if(n->left==NULL || n->right==NULL)
     { 
       if(strcmp(n->question,left)==0)
 	{
@@ -78,9 +78,9 @@ bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left
 	  strcpy(mod,n->question);
 	  delete n->question;
 	  n->question=new char[strlen(parent)+1];
+	  strcpy(n->question,parent);
 	  n->left=new BinaryNode(mod);
 	  n->right=new BinaryNode(right);
-	  delete mod;
 	  return true;
 	}
       else if(strcmp(n->question,right)==0)
@@ -89,9 +89,9 @@ bool TwentyQuestionsTree::modifyAndInsert(BinaryNode *n,char *parent, char *left
 	  strcpy(mod,n->question);
 	  delete n->question;
 	  n->question=new char[strlen(parent)+1];
+	  strcpy(n->question,parent);
 	  n->left=new BinaryNode(left);
 	  n->right=new BinaryNode(mod);
-	  delete mod;
 	  return true;
 	}
       
