@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 	    	fp = fopen(argv[1],"w");
 	    	tree->storeTree(fp);
 	    	fclose(fp);
+	    }
 	  }
 }
 
