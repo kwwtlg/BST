@@ -44,21 +44,21 @@ TwentyQuestionsTree::TwentyQuestionsTree()
 */
 bool TwentyQuestionsTree::insert(BinaryNode *r,char *parent, char *left, char *right)
 {
+ if(r->left == NULL || r->right == NULL)
+ {
   if(strcmp(r->question,parent)==0)
     {
       r->left = new BinaryNode(left);
       r->right= new BinaryNode(right);
       return true;
     }
-
-  if(insert(r->left,parent,left,right))
-    {
-      return true;
-    }
-  if(insert(r->right,parent,left,right))
-    {
-      return true;
-    }
+ }
+ else
+ {
+  	insert(r->left,parent,left,right);
+  	insert(r->right,parent,left,right);
+  	return false;
+ }
 }
 
 /* modifyAndInsert
